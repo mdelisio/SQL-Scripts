@@ -1,0 +1,10 @@
+SELECT TOP (1000) [ForeignSysRowID]
+      ,[UD_SysRevID]
+      ,[Company_c]
+      ,[Division_c]
+      ,[Name_c]
+      ,[DoNotBook_c]
+      ,[DoNotFinance_c]
+      ,[Deactivated_c]
+  FROM [ERPDB].[Ice].[UD02_UD]
+  Where Company_c = 'Solar'

@@ -1,0 +1,10 @@
+SELECT TOP (1000) [DimSnapshotId]
+      ,[Period]
+      ,[Month]
+      ,[Date]
+      ,[Company]
+      ,[TimeStamp]
+      ,[PrevTimeStamp]
+      ,[PostTimeStamp]
+  FROM [dw].[DimSnapshot]
+  Order by DimSnapshotId DESC

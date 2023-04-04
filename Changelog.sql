@@ -1,0 +1,18 @@
+SELECT TOP (1000) [Company]
+      ,[Identifier]
+      ,[SchemaName]
+      ,[TableName]
+      ,[Key1]
+      ,[Key2]
+      ,[Key3]
+      ,[DateStampedOn]
+      ,[LogText]
+      ,[LogNum]
+      ,[UserID]
+      ,[ChgLogMethod]
+      ,[ChgLogSeq]
+      ,[SysRevID]
+      ,[SysRowID]
+  FROM [ERPDB].[Ice].[ChgLog]
+  WHERE TableName = 'Jobmtl' and Company = 'Solar'
+  Order by DateStampedOn DESC

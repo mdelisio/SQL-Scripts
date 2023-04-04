@@ -1,0 +1,56 @@
+  SELECT DISTINCT Top(10) 
+       od.SysRowID,
+       od.Company, 	
+       od.ProjectID,     
+       od.ChangeDate AS Date,     
+       od.OrderNumLine,     
+       od.CustNum,     
+       ohu.Division_c AS DivisionID,     
+       od.OrderNum,     
+       od.OrderLine,     
+       dp.ConProjMgr AS EmpID,     
+       od.PartNum,     
+       od.ProdCode,     
+       od.NeedByDate,     
+       od.ChangeTime,     
+       od.ChangeDateTime,     
+       od.EstUnitCost_c AS BaseEstimate,     
+       od.UnitPrice,     
+       od.OrderQty,     
+       od.Discount,     
+       od.ChangeDate,     
+       od.VoidLine,     
+       ((od.UnitPrice * od.OrderQty) - od.Discount) AS SellPrice,     
+       od.OpenLine,     
+       od.LineType,     
+       od.LineDesc,     
+       od.IUM,     
+       od.RevisionNum,     
+       od.POLine,     
+       od.DiscountPercent,     
+       od.DocUnitPrice,     
+       od.DocDiscount,     
+       od.RequestDate,     
+       od.XPartNum,     
+       od.XRevisionNum,     
+       od.PricePerCode,     
+       od.OrderComment,     
+       od.TaxCatID,     
+       od.QuoteNum,     
+       od.QuoteLine,     
+       od.TMBilling,     
+       od.Rework,     
+       od.RMANum,     
+       od.RMALine,     
+       od.Warranty,     
+       od.WarrantyCode,     
+       od.SalesUM,     
+       od.SellingFactor
+FROM    [etl].[vwOrderDetail] od    
+INNER JOIN [ERPDB].[ERP].OrderHed oh 
+    on oh.OrderNum = od.ProjectID and oh.Company = od.Company	    
+INNER JOIN [ERPDB].[ERP].OrderHed_UD ohu 
+    on oh.SysRowID = ohu.ForeignSysRowID	    
+INNER JOIN erp.Project dp 
+ON od.ProjectID = dp.ProjectID AND dp.Company = od.Company 
+  WHERE ISNUMERIC(od.ProjectID)=1
