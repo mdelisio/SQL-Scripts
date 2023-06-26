@@ -88,7 +88,13 @@ From Erp.InvcTax
 Select *
 from etl.vwInvcDtl
 Where 1=1
-and InvoiceNum = 219130
+and InvoiceNum = 1693246
+and Company = 'Solar'
+
+Select *
+from etl.vwInvcHead
+Where 1=1
+and InvoiceNum = 1693246
 and Company = 'Solar'
 
 Select *
@@ -97,3 +103,10 @@ Where 1=1
 and InvoiceNum = 219130
 and Company = 'Solar'
 */
+
+Select Top (100) *
+from etl.vwInvcHead
+Where 1=1
+and Company = 'Solar'
+and SoldtoCustNum <> CustNum
+order by ChangeDate Desc
