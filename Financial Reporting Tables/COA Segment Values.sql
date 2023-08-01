@@ -1,4 +1,6 @@
-Select Top (1000) *
-
+Select *
 From Erp.COASegValues
-Where Company = 'Solar'
+Where 1=1
+-- and Company = 'Solar'
+and SegmentNbr = 2
+ORder by SegmentCode
