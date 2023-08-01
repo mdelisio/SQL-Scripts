@@ -1,0 +1,67 @@
+With RankCustomerOrdersbyProject
+
+AS
+
+(SELECT 
+
+company,
+
+projectID,
+
+Custnum,
+
+SUM(UnitPrice) as SellPrice
+
+FROM [ODS_ERPDB].[Erp_OrderDtlBase] 
+
+Group by Company, ProjectID, CustNum
+
+)
+
+
+
+SELECT Distinct
+
+od.Company
+
+,od.ProjectID
+
+,c.name
+
+,Rank () Over (PARTITION BY ProjectID Order by SellPrice DESC) as SellRank
+
+  FROM RankCustomerOrdersbyProject od
+
+  Left Join ODS_ERPDB.ERP_CustomerBase c
+
+    ON od.company = c.company
+
+        AND od.CustNum = c.CustNum
+
+  WHERE 1=1
+
+    AND od.Company = 'Solar'
+
+    AND od.ProjectID IN ('2074023',
+
+'2070066',
+
+'1970079',
+
+'2070035',
+
+'2170006',
+
+'2075009',
+
+'2075014',
+
+'2070001',
+
+'1974017',
+
+'2070050')
+Collapse
+
+has context menu
+Compose
