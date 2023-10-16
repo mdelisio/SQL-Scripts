@@ -1,5 +1,6 @@
 SELECT 
     c.Name as CustomerName,
+    oh.Division_C as Division,
     oh.Ordernum,
     orel.orderline,
     orel.OrderRelNum,
