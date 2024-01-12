@@ -19,15 +19,19 @@ jm.PartNum,
 RequiredQty,
 IssuedQty,
 ohi.OnHandQty,
-jm.TotalCost as TotalActualCost,
-ISNULL(jm.TotalCost/NULLIF(IssuedQty,0),jm.EstUnitCost) as AverageActualCost,
+jm.TotalCost as MaterialActualCost,
+jm.MtlBurCost as MaterialBurdenCost,
+jm.TotalCost + MtlBurCost as TotalActualCost,
+ISNULL((jm.TotalCost+jm.MtlBurCost)/NULLIF(IssuedQty,0),jm.EstUnitCost+jm.EstMtlBurUnitCost) as AverageActualCost,
 CASE 
 WHEN (RequiredQty - IssuedQty) > 0 THEN (RequiredQty - IssuedQty)
     ELSE 0 
 END AS  RemainingQtyToIssue,
-jm.EstUnitCost,
+jm.EstBurUnitCost as EstimatedBurdenUnitCost,
+jm.EstUnitCost as EstimatedMaterialUnitCost,
+jm.EstUnitCost + jm.EstBurUnitCost as EstimatedTotalUnitCost,
 CASE 
-    WHEN (RequiredQty - IssuedQty) * jm.EstUnitCost > 0 THEN (RequiredQty - IssuedQty) * jm.EstUnitCost
+    WHEN (RequiredQty - IssuedQty) * (jm.EstUnitCost + jm.EstBurUnitCost) > 0 THEN (RequiredQty - IssuedQty) * (jm.EstUnitCost + jm.EstBurUnitCost)
     ELSE 0
 END AS RemainingEstimatedCost
 FROM ODS_ERPDB.Erp_JobMtl AS jm 
