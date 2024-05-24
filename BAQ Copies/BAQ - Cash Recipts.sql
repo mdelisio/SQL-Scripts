@@ -1,5 +1,5 @@
 Declare @TransDateStart date
-Set @TransDateStart = '3/1/2024';
+Set @TransDateStart = '4/1/2024';
 
 select 
 	[CashDtl].[HeadNum] as [CashDtl_HeadNum],
@@ -17,3 +17,23 @@ select
 	[CashDtl].[Reference] as [CashDtl_Reference]
 from Erp.CashDtl as CashDtl
 where (CashDtl.TranDate >= @TransDateStart and CashDtl.TranType = 'PayInv')
+AND Company = 'solar'
+
+
+/*
+Declare @TransDateStart date
+Set @TransDateStart = '4/1/2024';
+
+select 
+	cd.[HeadNum] as [CashDtl_HeadNum],
+	cd.[InvoiceNum] as [InvoiceNum],
+	cd.[TranDate] as [TransactionDate],
+	cd.[TranAmt] as [TransactionAmt]
+from Erp.CashDtl as CD
+where (cd.TranDate >= @TransDateStart and cd.TranType = 'PayInv')
+AND Company = 'solar'
+Order by CD.TranDate DESC
+*/
+
+
+
