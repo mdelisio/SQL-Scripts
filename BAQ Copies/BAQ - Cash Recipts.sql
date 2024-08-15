@@ -1,5 +1,5 @@
 Declare @TransDateStart date
-Set @TransDateStart = '6/1/2024';
+Set @TransDateStart = '8/1/2024';
 
 select 
 	[CashDtl].[HeadNum] as [CashDtl_HeadNum],
