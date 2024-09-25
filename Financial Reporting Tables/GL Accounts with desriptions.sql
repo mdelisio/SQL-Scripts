@@ -1,7 +1,7 @@
 SELECT Distinct 
     --gla.Company
     --   ,gla.GLAccount
-    --   ,gla.AccountDesc
+     gla.AccountDesc,
       gla.SegValue1 as AccountNbr
       ,coa.SegmentName as AccountName
       ,gla.SegValue2 as DeptNbr
